@@ -2,7 +2,7 @@
 # Author(s): sieucaocao | https://github.com/sieucaocao       #
 ###############################################################
 
-name: Build OpenWrt Package
+name: Build OpenWrt IPK Package
 
 on:
   workflow_dispatch:
