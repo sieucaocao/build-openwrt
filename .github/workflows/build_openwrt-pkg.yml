@@ -57,19 +57,19 @@ jobs:
         cd openwrt/sdk
         make defconfig
 
-    - name: Download packages
-      run: |
-        cd openwrt/sdk
-        make download -j1 V=s
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+    #- name: Download packages
+      #run: |
+        #cd openwrt/sdk
+        #make download -j8
+        #find dl -size -1024c -exec ls -l {} \;
+        #find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile package
       id: compile
       run: |
         cd openwrt/sdk
-        make package/luci-app-zerotier/compile -j1 V=s
-        make package/luci-app-pppoe-server/compile -j1 V=s
+        make package/luci-app-zerotier/compile V=s -j$(nproc)
+        make package/luci-app-pppoe-server/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
