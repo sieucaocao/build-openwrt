@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt Package
+name: Build OpenWrt Package 2
 
 on:
   workflow_dispatch:
