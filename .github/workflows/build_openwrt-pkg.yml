@@ -52,10 +52,10 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
-    - name: Generate default configuration
-      run: |
-        cd openwrt/sdk
-        make defconfig
+    #- name: Generate default configuration
+      #run: |
+        #cd openwrt/sdk
+        #make defconfig
 
     #- name: Download packages
       #run: |
