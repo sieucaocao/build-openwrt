@@ -60,7 +60,7 @@ jobs:
     - name: Download packages
       run: |
         cd openwrt/sdk
-        make download -j8
+        make download V=s -j1
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
