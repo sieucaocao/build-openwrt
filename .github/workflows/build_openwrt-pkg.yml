@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt Package
+name: Build OpenWrt Package 2
 
 on:
   workflow_dispatch:
@@ -44,31 +44,31 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git kenzok8 https://github.com/kenzok8/small-package.git" >> feeds.conf.default
+        echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install luci-app-pppoe-server
+        ./scripts/feeds install luci-app-zerotier
 
-    #- name: Generate default configuration
-      #run: |
-        #cd openwrt/sdk
-        #make defconfig
+    - name: Generate default configuration
+      run: |
+        cd openwrt/sdk
+        make defconfig
 
-    #- name: Download packages
-      #run: |
-        #cd openwrt/sdk
-        #make download -j8
-        #find dl -size -1024c -exec ls -l {} \;
-        #find dl -size -1024c -exec rm -f {} \;
+    - name: Download packages
+      run: |
+        cd openwrt/sdk
+        make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile package
       id: compile
       run: |
         cd openwrt/sdk
-        make package/luci-app-pppoe-server/compile V=s -j$(nproc)
+        make package/luci-app-zerotier/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
