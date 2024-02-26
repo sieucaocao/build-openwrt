@@ -44,8 +44,9 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
-
+        echo "src-git oldpackages https://github.com/coolsnowwolf/packages" >> feeds.conf.default
+        echo "src-git oldluci https://github.com/coolsnowwolf/luci" >> feeds.conf.default
+        echo "src-git oldrouting https://github.com/coolsnowwolf/routing" >> feeds.conf.default
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
