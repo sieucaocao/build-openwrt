@@ -1,7 +1,7 @@
 #EXTM3U url-tvg="http://lichphatsong.xyz/schedule/epg.xml"
 
 #EXTINF:-1 tvg-id="vtv1hd" group-title="🇻🇳| VTV" group-logo="https://phuhdtv.github.io/thumbs/Groups/VTV.png" tvg-logo="https://i.imgur.com/nfkmvAY.png",VTV1
-https://live-zlr1.tv360.vn/manifest/VTV1_HD/playlist_1080p.m3u8?timestamp=1712673675&token=16c1efb7f461275c6503920a4bdca638&uid=230739787
+https://live-bd2.tv360.vn/w3tmzORldZKWtzZSjS41Qg/1712760219/manifest/VTV1_HD/playlist_1080p.m3u8?manifestfilter=video_bitrate:1-5767168&uid=18834721
 #EXTINF:-1 tvg-id="vtv2hd" group-title="🇻🇳| VTV" group-logo="https://phuhdtv.github.io/thumbs/Groups/VTV.png" tvg-logo="https://i.imgur.com/BVwi3K3.png",VTV2
 https://live-evg4.tv360.vn/sF7ZH_MidfnJmw7lae0aRQ/1712738520/manifest/vtv2/playlist_VTV2-1080-3_6M.m3u8
 #EXTINF:-1 tvg-id="vtv3hd" group-title="🇻🇳| VTV" group-logo="https://phuhdtv.github.io/thumbs/Groups/VTV.png" tvg-logo="https://i.imgur.com/7rLCvgS.png",VTV3
