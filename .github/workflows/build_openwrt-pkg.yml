@@ -50,7 +50,7 @@ jobs:
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install luci-app-turboacc
+        ./scripts/feeds install -a
         
     - name: Generate default configuration
       run: |
