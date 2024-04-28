@@ -69,6 +69,14 @@ jobs:
       run: |
         cd openwrt/sdk
         make package/luci-app-turboacc/compile V=s -j$(nproc)
+        make package/pdnsd-alt/compile V=s -j$(nproc)
+        make package/kmod-tcp-bbr/compile V=s -j$(nproc)
+        make package/dnsforwarder/compile V=s -j$(nproc)
+        make package/dnsproxy/compile V=s -j$(nproc)
+        make package/kmod-ipt-offload/compile V=s -j$(nproc)
+        make package/kmod-fast-classifier/compile V=s -j$(nproc)
+        make package/kmod-shortcut-fe-cm/compile V=s -j$(nproc)
+        make package/kmod-shortcut-fe-drv/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
