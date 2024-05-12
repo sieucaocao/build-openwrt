@@ -44,7 +44,7 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git chenmozhijin https://github.com/chenmozhijin/turboacc.git" >> feeds.conf.default
+        echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
