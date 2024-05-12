@@ -45,6 +45,7 @@ jobs:
       run: |
         cd openwrt/sdk
         echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
+        echo "src-git fall513 https://github.com/fall513/fast-classifier.git" >> feeds.conf.default
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
