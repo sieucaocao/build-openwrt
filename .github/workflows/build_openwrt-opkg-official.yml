@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt Package 2
+name: Build OpenWrt Package (Official)
 
 on:
   workflow_dispatch:
@@ -44,9 +44,7 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git oldpackages https://github.com/coolsnowwolf/packages" >> feeds.conf.default
-        echo "src-git oldluci https://github.com/coolsnowwolf/luci" >> feeds.conf.default
-        echo "src-git oldrouting https://github.com/coolsnowwolf/routing" >> feeds.conf.default
+        echo "src-git chenmozhijin https://github.com/chenmozhijin/turboacc.git" >> feeds.conf.default
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
