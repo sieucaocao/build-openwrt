@@ -44,10 +44,10 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git luci-app-sfe https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/luci-app-sfe" >> feeds.conf.default
-        echo "src-git fast-classifier https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/fast-classifier" >> feeds.conf.default
-        echo "src-git shortcut-fe https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/shortcut-fe" >> feeds.conf.default
-        echo "src-git openwrt-fullconenat https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/openwrt-fullconenat" >> feeds.conf.default
+        echo "src-git sfe https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/luci-app-sfe" >> feeds.conf.default
+        echo "src-git classifier https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/fast-classifier" >> feeds.conf.default
+        echo "src-git fe https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/shortcut-fe" >> feeds.conf.default
+        echo "src-git fullconenat https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/openwrt-fullconenat" >> feeds.conf.default
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
