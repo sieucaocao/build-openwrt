@@ -52,10 +52,7 @@ jobs:
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install fullconenat
-        ./scripts/feeds install luci-app-sfe
-        ./scripts/feeds install fast-classifier
-        ./scripts/feeds install shortcut-fe
+        ./scripts/feeds install -a
 
     - name: Generate default configuration
       run: |
