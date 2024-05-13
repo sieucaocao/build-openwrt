@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DL_SDK_SH: scripts/openwrt/dl_sdk-2.sh
+  DL_SDK_SH: scripts/openwrt/dl_sdk.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -44,13 +44,18 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
-        echo "src-git fall513 https://github.com/fall513/fast-classifier.git" >> feeds.conf.default
+        echo "src-git luci-app-sfe https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/luci-app-sfe" >> feeds.conf.default
+        echo "src-git fast-classifier https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/fast-classifier" >> feeds.conf.default
+        echo "src-git shortcut-fe https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/shortcut-fe" >> feeds.conf.default
+        echo "src-git openwrt-fullconenat https://github.com/coolsnowwolf/openwrt/tree/master/package/lean/openwrt-fullconenat" >> feeds.conf.default
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install luci-app-turboacc
+        ./scripts/feeds install fullconenat
+        ./scripts/feeds install luci-app-sfe
+        ./scripts/feeds install fast-classifier
+        ./scripts/feeds install shortcut-fe
 
     - name: Generate default configuration
       run: |
@@ -68,7 +73,10 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/luci-app-turboacc/compile V=s -j$(nproc)
+        make package/fullconenat/compile V=s -j$(nproc)
+        make package/luci-app-sfe/compile V=s -j$(nproc)
+        make package/fast-classifier/compile V=s -j$(nproc)
+        make package/shortcut-fe/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
