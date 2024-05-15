@@ -5,4 +5,4 @@
 
 make image \
      PROFILE=mc-mac1200r \
-     PACKAGES="-block-mount -luci-app-filetransfer htop luci-compat https-dns-proxy zerotier simple-adblock"
+     PACKAGES="-block-mount -luci-app-filetransfer -luci-app-cpufreq htop luci-compat https-dns-proxy zerotier simple-adblock"
