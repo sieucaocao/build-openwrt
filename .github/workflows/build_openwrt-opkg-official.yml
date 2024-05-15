@@ -41,10 +41,10 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
-    - name: Load package feeds
-      run: |
-        cd openwrt/sdk
-        echo "src-git LGA1150 https://github.com/LGA1150/openwrt-fullconenat.git" >> feeds.conf.default
+    #- name: Load package feeds
+      #run: |
+        #cd openwrt/sdk
+        #echo "src-git LGA1150 https://github.com/LGA1150/openwrt-fullconenat.git" >> feeds.conf.default
         #echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
 
     - name: Clone fullconenat package
