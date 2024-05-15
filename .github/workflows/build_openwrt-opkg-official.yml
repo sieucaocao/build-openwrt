@@ -48,7 +48,7 @@ jobs:
 
     - name: Copy patch to OpenWRT
       run: |
-        cd openwrt/skd
+        cd openwrt/sdk
         cp -r feeds/fall513/ar71xx/patches-4.14/ openwrt/sdk/target/linux/ar71xx/
 
     - name: Copy file shortcut-fe to OpenWRT
