@@ -50,7 +50,7 @@ jobs:
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install iptables-mod-fullconenat
+        ./scripts/feeds install fullconenat
 
     - name: Generate default configuration
       run: |
