@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt Package (Official)
+name: Build OpenWrt Package
 
 on:
   workflow_dispatch:
@@ -41,22 +41,22 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
-    #- name: Load package feeds
-      #run: |
-        #cd openwrt/sdk
-        #echo "src-git LGA1150 https://github.com/LGA1150/openwrt-fullconenat.git" >> feeds.conf.default
-        #echo "src-git kenzok8 https://github.com/kenzok8/jell.git" >> feeds.conf.default
-
-    - name: Clone fullconenat package
+    - name: Load package feeds
       run: |
-        cd openwrt/sdk/package
-        git clone -b master --single-branch https://github.com/LGA1150/openwrt-fullconenat fullconenat
-    
+        cd openwrt/sdk
+        echo "src-git fall513 https://github.com/fall513/fast-classifier.git" >> feeds.conf.default
+
+    - name: Copy patch to OpenWRT
+      run: cp -r feeds/fall513/ar71xx/patches-4.14/ openwrt/sdk/target/linux/ar71xx/
+
+    - name: Copy file shortcut-fe to OpenWRT
+      run: cp -r feeds/fall513/package/kernel/shortcut-fe/ openwrt/sdk/package/kernel/
+
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install iptables-mod-fullconenat
+        ./scripts/feeds install -a
 
     - name: Generate default configuration
       run: |
@@ -74,7 +74,11 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/iptables-mod-fullconenat/compile V=s -j$(nproc)
+        make package/luci-app-argon-config/compile V=s -j$(nproc)
+        make package/luci-app-clear_luci_cache/compile V=s -j$(nproc)
+        make package/luci-app-clear_ram/compile V=s -j$(nproc)
+        make package/luci-app-vsftpd/compile V=s -j$(nproc)
+        make package/luci-theme-argon/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
