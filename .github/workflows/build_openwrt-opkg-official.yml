@@ -56,7 +56,8 @@ jobs:
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install -a
+        ./scripts/feeds install kmod-shortcut-fe
+        ./scripts/feeds install kmod-fast-classifier
 
     - name: Generate default configuration
       run: |
@@ -74,11 +75,8 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/luci-app-argon-config/compile V=s -j$(nproc)
-        make package/luci-app-clear_luci_cache/compile V=s -j$(nproc)
-        make package/luci-app-clear_ram/compile V=s -j$(nproc)
-        make package/luci-app-vsftpd/compile V=s -j$(nproc)
-        make package/luci-theme-argon/compile V=s -j$(nproc)
+        make package/kmod-shortcut-fe/compile V=s -j$(nproc)
+        make package/kmod-fast-classifier/compile V=s -j$(nproc))
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
