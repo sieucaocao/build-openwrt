@@ -47,10 +47,10 @@ jobs:
         echo "src-git fall513 https://github.com/fall513/fast-classifier.git" >> feeds.conf.default
 
     - name: Copy patch to OpenWRT
-      run: cp -r ./feeds/fall513/ar71xx/patches-4.14/ openwrt/sdk/target/linux/ar71xx/
+      run: cp -r feeds/fall513/ar71xx/patches-4.14/ openwrt/sdk/target/linux/ar71xx/
 
     - name: Copy file shortcut-fe to OpenWRT
-      run: cp -r ./feeds/fall513/package/kernel/shortcut-fe/ openwrt/sdk/package/kernel/
+      run: cp -r feeds/fall513/package/kernel/shortcut-fe/ openwrt/sdk/package/kernel/
 
     - name: Update & install feeds
       run: |
