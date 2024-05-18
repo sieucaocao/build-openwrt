@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DEVICE_NAME: tl-wr841n-v13
+  DEVICE_NAME: tplink_tl-wr841n-v13
   BUILD_SCRIPT: configs/immortalwrt/imagebuilder/tl-wr841n-v13.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
