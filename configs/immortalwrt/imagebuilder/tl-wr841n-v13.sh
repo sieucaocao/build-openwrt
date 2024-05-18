@@ -4,5 +4,5 @@
 #####################################################################
 
 make image \
-     PROFILE=tl-wr841n-v13 \
+     PROFILE=tplink_tl-wr841n-v13 \
      PACKAGES="-block-mount -luci-app-filetransfer -luci-app-cpufreq htop"
