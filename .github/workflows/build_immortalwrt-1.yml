@@ -8,11 +8,11 @@ on:
   workflow_dispatch:
 
 env:
-  DEVICE_NAME: mc-mac1200r
-  BUILD_SCRIPT: configs/immortalwrt/imagebuilder/mc-mac1200r.sh
+  DEVICE_NAME: tl-wr841n-v13
+  BUILD_SCRIPT: configs/immortalwrt/imagebuilder/tl-wr841n-v13.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  DL_IMAGEBUILDER_SH: scripts/immortalwrt/dl_imagebuilder.sh
+  DL_IMAGEBUILDER_SH: scripts/immortalwrt/dl_imagebuilder2.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
