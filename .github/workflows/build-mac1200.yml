@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt (Image Builder) ImmortalWRT
+name: Build OpenWrt (Image Builder) ImmortalWRT MAC1200r
 
 on:
   workflow_dispatch:
