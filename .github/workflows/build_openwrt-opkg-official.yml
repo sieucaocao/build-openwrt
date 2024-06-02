@@ -44,24 +44,13 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git fall513 https://github.com/fall513/fast-classifier.git" >> feeds.conf.default
-
-    - name: Copy patch to OpenWRT
-      run: |
-        cd openwrt/sdk
-        cp -r feeds/fall513/ar71xx/patches-4.14/ openwrt/sdk/target/linux/ar71xx/
-
-    - name: Copy file shortcut-fe to OpenWRT
-      run: |
-        cd openwrt/sdk
-        cp -r feeds/fall513/package/kernel/shortcut-fe/ openwrt/sdk/package/kernel/
+        echo "src-git stangri https://github.com/stangri/source.openwrt.melmac.net.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install kmod-shortcut-fe
-        ./scripts/feeds install kmod-fast-classifier
+        ./scripts/feeds install -a
 
     - name: Generate default configuration
       run: |
@@ -79,8 +68,7 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/kmod-shortcut-fe/compile V=s -j$(nproc)
-        make package/kmod-fast-classifier/compile V=s -j$(nproc))
+        make package/https-dns-proxy/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
