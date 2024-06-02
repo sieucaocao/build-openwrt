@@ -41,10 +41,15 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
-    - name: Load package feeds
+    - name: Git clone repository
       run: |
         cd openwrt/sdk
-        echo "src-git stangri_repo https://repo.openwrt.melmac.net" >> feeds.conf.default
+        git clone https://github.com/stangri/source.openwrt.melmac.net.git
+
+    - name: Load package 
+      run: |
+        cd openwrt/sdk
+        ln -s ~/source.openwrt.melmac.net/https-dns-proxy/ ~/openwrt/sdk/package
         
     - name: Update & install feeds
       run: |
