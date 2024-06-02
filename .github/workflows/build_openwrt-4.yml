@@ -2,17 +2,17 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt (Image Builder) TPlink
+name: Build OpenWrt (Image Builder) mc-mac1200r
 
 on:
   workflow_dispatch:
 
 env:
-  DEVICE_NAME: tl-wr841n-v13
-  BUILD_SCRIPT: configs/openwrt/imagebuilder/tl-wr841n-v13.sh
+  DEVICE_NAME: mc-mac1200r
+  BUILD_SCRIPT: configs/openwrt/imagebuilder/mc-mac1200r.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder-2.sh
+  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
