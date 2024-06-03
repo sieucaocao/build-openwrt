@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/Lienol/openwrt.git
-  REPO_BRANCH: 19.07
-  DEVICE_CONFIG: configs/openwrt19/mc-mac1200r.config
+  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
+  REPO_BRANCH: openwrt-18.06
+  DEVICE_CONFIG: configs/immortalwrt/mc-mac1200r.config
   CUSTOMIZE_FIRMWARE: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
