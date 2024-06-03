@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: openwrt-21.02
-  DEVICE_CONFIG: configs/openwrt/xiaomi_miwifi-mini.config
+  REPO_URL: https://github.com/Lienol/openwrt.git
+  REPO_BRANCH: 19.07
+  DEVICE_CONFIG: configs/openwrt19/mc-mac1200r.config
   CUSTOMIZE_FIRMWARE: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
@@ -51,6 +51,7 @@ jobs:
     - name: Update & install feeds
       run: |
         cd openwrt
+        ./scripts/feeds clean
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
