@@ -16,7 +16,7 @@ env:
   CUSTOMIZE_FIRMWARE: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  CUSTOMIZE_SH: scripts/openwrt/customize.sh
+  #CUSTOMIZE_SH: scripts/openwrt/customize.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -59,13 +59,13 @@ jobs:
       run: |
         cp $DEVICE_CONFIG openwrt/.config
 
-    - name: Customize firmware
-      if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
-      run: |
-        cp $CUSTOMIZE_SH openwrt/customize.sh
-        cd openwrt
-        chmod +x customize.sh
-        ./customize.sh
+    #- name: Customize firmware
+      #if: env.CUSTOMIZE_FIRMWARE == 'true' && !cancelled()
+      #run: |
+        #cp $CUSTOMIZE_SH openwrt/customize.sh
+        #cd openwrt
+        #chmod +x customize.sh
+        #./customize.sh
 
     - name: Generate default configuration
       run: |
