@@ -1,6 +1,6 @@
 #!/bin/bash
 ###############################################################
-# Author(s): sieucaocao | https://github.com/sieucaocao       #
+# Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
 # File info
