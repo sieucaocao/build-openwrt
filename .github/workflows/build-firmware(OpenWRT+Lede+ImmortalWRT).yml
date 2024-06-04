@@ -4,7 +4,7 @@
 #            coolsnowwolf | https://github.com/coolsnowwolf   #
 ###############################################################
 
-name: Build Lede
+name: Build Lede/OpenWRT/ImmortalWRT
 
 on:
   workflow_dispatch:
