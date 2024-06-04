@@ -8,11 +8,11 @@ on:
   workflow_dispatch:
 
 env:
-  DEVICE_NAME: mc-mac1200r
-  BUILD_SCRIPT: configs/openwrt/imagebuilder/mc-mac1200r.sh
+  DEVICE_NAME: tplink
+  BUILD_SCRIPT: configs/immortalwrt/imagebuilder/mc-mac1200r.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
+  DL_IMAGEBUILDER_SH: scripts/immortalwrt/dl_imagebuilder2.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
