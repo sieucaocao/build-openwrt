@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DL_SDK_SH: scripts/openwrt/dl_sdk.sh
+  DL_SDK_SH: scripts/immortalwrt/dl_sdk.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -44,13 +44,13 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git stangri https://github.com/stangri/source.openwrt.melmac.net.git" >> feeds.conf.default
+        echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
-        ./scripts/feeds update -a
-        ./scripts/feeds install https-dns-proxy
+        ./scripts/feeds update zerotier
+        ./scripts/feeds install zerotier
 
     - name: Generate default configuration
       run: |
@@ -68,7 +68,7 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/https-dns-proxy/compile V=s -j$(nproc)
+        make package/zerotier/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
