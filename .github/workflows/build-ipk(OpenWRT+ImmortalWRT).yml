@@ -44,7 +44,7 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git zerotier https://github.com/mwarning/zerotier-openwrt.git" >> feeds.conf.default
+        echo "src-git zerotier https://github.com/sieucaocao/packages.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
