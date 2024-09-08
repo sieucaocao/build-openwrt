@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DL_SDK_SH: scripts/immortalwrt/dl_sdk.sh
+  DL_SDK_SH: scripts/openwrt/dl_sdk-2.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
