@@ -5,4 +5,4 @@
 
 make image \
      PROFILE=mc-mac1200r \
-     PACKAGES="-block-mount -luci-app-filetransfer -luci-app-cpufreq -kmod-ath10k -ath10k-firmware-qca988x kmod-ath10k-ct-smallbuffers ath10k-firmware-qca988x-ct"
+     PACKAGES="-block-mount -luci-app-filetransfer -luci-app-cpufreq"
