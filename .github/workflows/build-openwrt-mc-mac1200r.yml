@@ -43,7 +43,7 @@ jobs:
         mkdir -p etc
         cd etc
         mkdir -p uci-defaults
-        cp $ENABLE_WIFI openwrt/file/etc/uci-defaults/rc.local
+        cp $ENABLE_WIFI openwrt/file/etc/uci-defaults/99-enable-wifi
     - name: Load build script
       run: |
         cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
