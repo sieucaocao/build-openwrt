@@ -8,7 +8,7 @@ set wireless.default_radio0.encryption='psk2'
 set wireless.default_radio0.key='123456'
 
 del wireless.radio1.disabled
-set wireless.radio1.htmode='HT40'
+set wireless.radio0.channel='1'
 set wireless.radio1.cell_density='0'
 set wireless.default_radio1.ssid='OpenWrt'
 set wireless.default_radio1.encryption='psk2'
