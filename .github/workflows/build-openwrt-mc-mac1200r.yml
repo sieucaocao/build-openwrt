@@ -1,24 +1,30 @@
 ###############################################################
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
-name: Build OpenWRT (Image Builder) mc-mac1200r
+
+name: Build OpenWrt (Image Builder) MAR1200r
+
 on:
   workflow_dispatch:
+
 env:
   DEVICE_NAME: mc-mac1200r
   BUILD_SCRIPT: configs/openwrt/imagebuilder/mc-mac1200r.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
-  ENABLE_WIFI: scripts/openwrt/99-enable-wifi
+  WIFI_ENABLE: scripts/openwrt/99-enable-wifi
   TZ: Asia/Ho_Chi_Minh
+
 jobs:
   build:
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
+
     steps:
     - name: Checkout
       uses: actions/checkout@main
+
     - name: Initialize environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -29,24 +35,19 @@ jobs:
         zlib1g-dev gawk git gettext libssl-dev xsltproc rsync wget unzip python
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
+
     - name: Download Image Builder
       run: |
         mkdir -p openwrt
         cp $DL_IMAGEBUILDER_SH openwrt/dl_imagebuilder.sh
         cd openwrt
         sh dl_imagebuilder.sh
-    - name: Enable wifi
-      run: |
-        cd openwrt
-        mkdir -p file
-        cd file
-        mkdir -p etc
-        cd etc
-        mkdir -p uci-defaults
-        cp $ENABLE_WIFI openwrt/file/etc/uci-defaults/99-enable-wifi
+
     - name: Load build script
       run: |
         cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
+        cp $WIFI_ENABLE openwrt/imagebuilder/files
+
     - name: Compile firmware
       id: compile
       run: |
@@ -54,12 +55,14 @@ jobs:
         sh make.sh
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
     - name: Upload bin directory
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: ${{ env.DEVICE_NAME }}_openwrt_bin_${{ env.DATE }}
         path: openwrt/imagebuilder/bin
+
     - name: Prepare files
       id: prepare
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
@@ -68,6 +71,7 @@ jobs:
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
+
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
