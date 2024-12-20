@@ -1,86 +1,41 @@
-###############################################################
-# Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
-###############################################################
-
-name: Build OpenWRT (Image Builder) mc-mac1200r
+name: Build OpenWrt Firmware 
 
 on:
   workflow_dispatch:
-
+  
 env:
-  DEVICE_NAME: mc-mac1200r
-  BUILD_SCRIPT: configs/openwrt/imagebuilder/mc-mac1200r.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE_DIR: true
-  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
-  CUSTOMIZE_SH: scripts/openwrt/customize.sh
-  TZ: Asia/Ho_Chi_Minh
+  CUSTOMIZE_SH: scripts/openwrt/99-enable-wifi
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@main
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-    - name: Initialize environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
+    - name: Setup Build Environment
       run: |
-        sudo timedatectl set-timezone "$TZ"
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential libncurses5-dev libncursesw5-dev \
-        zlib1g-dev gawk git gettext libssl-dev xsltproc rsync wget unzip python
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
+        sudo apt-get update
+        sudo apt-get install -y build-essential python3 wget unzip
 
-    - name: Download Image Builder
+    - name: Download OpenWrt ImageBuilder
       run: |
-        mkdir -p openwrt
-        cp $DL_IMAGEBUILDER_SH openwrt/dl_imagebuilder.sh
-        cd openwrt
-        sh dl_imagebuilder.sh
+        wget https://downloads.openwrt.org/releases/19.07.10/targets/ar71xx/generic/openwrt-imagebuilder-19.07.10-ar71xx-generic.Linux-x86_64.tar.xz
+        tar -xf openwrt-imagebuilder-19.07.10-ar71xx-generic.Linux-x86_64.tar.xz
+        mv openwrt-imagebuilder-19.07.10-ar71xx-generic.Linux-x86_64 imagebuilder
+
+    - name: Copy Custom Files
+      run: |
+        cp -r $CUSTOMIZE_SH imagebuilder/99-enable-wifi
+
+    - name: Build OpenWrt Firmware
+      run: |
+        cd imagebuilder
+        make image PROFILE=mc-mac1200r FILES="$CUSTOMIZE_SH" PACKAGES="base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd urandom-seed urngd kmod-gpio-button-hotplug swconfig kmod-ath9k uboot-envtools wpad-basic -dnsmasq dnsmasq-full iptables ip6tables ppp ppp-mod-pppoe firewall odhcpd-ipv6only odhcp6c kmod-ipt-offload -kmod-ath10k-ct kmod-ath10k -ath10k-firmware-qca988x-ct ath10k-firmware-qca988x luci"
         
-    - name: Load build script
-      run: |
-        cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
-
-    - name: Customize firmware
-      run: |
-        cp $CUSTOMIZE_SH openwrt/customize.sh
-        cd openwrt
-        chmod +x customize.sh
-        ./customize.sh
-
-    - name: Compile firmware
-      id: compile
-      run: |
-        cd openwrt/imagebuilder
-        sh make.sh
-        echo "status=success" >> $GITHUB_OUTPUT
-        echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
-
-    - name: Upload bin directory
-      uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
       with:
-        name: ${{ env.DEVICE_NAME }}_openwrt_bin_${{ env.DATE }}
-        path: openwrt/imagebuilder/bin
-
-    - name: Prepare files
-      id: prepare
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
-      run: |
-        cd openwrt/imagebuilder/bin/targets/*/*
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_OUTPUT
-
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@main
-      if: steps.prepare.outputs.status == 'success' && env.UPLOAD_FIRMWARE_DIR == 'true'
-      with:
-        name: ${{ env.DEVICE_NAME }}_openwrt_r${{ env.DATE }}
-        path: ${{ env.FIRMWARE }}
+        name: OpenWrt-Firmware
+        path: imagebuilder/bin/targets/ath79/generic/
