@@ -45,7 +45,7 @@ jobs:
 
     - name: Load config script
       run: |
-        mkdir -p /files/etc/uci-defaults/
+        mkdir -p files/etc/uci-defaults
         cp $WIFI_ENABLE openwrt/imagebuilder/files/etc/uci-defaults/99_custom
 
     - name: Load build script
