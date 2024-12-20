@@ -45,8 +45,8 @@ jobs:
 
     - name: Load build script
       run: |
-        cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
         cp $WIFI_ENABLE openwrt/imagebuilder/files
+        cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
 
     - name: Compile firmware
       id: compile
