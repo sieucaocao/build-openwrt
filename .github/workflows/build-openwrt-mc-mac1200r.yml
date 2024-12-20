@@ -43,14 +43,14 @@ jobs:
         cd openwrt
         sh dl_imagebuilder.sh
 
-    - name: Load config script
-      run: |
-        mkdir -p files/etc/uci-defaults
-        cp $WIFI_ENABLE openwrt/imagebuilder/files/etc/uci-defaults/99_custom
-
     - name: Load build script
       run: |
         cp $BUILD_SCRIPT openwrt/imagebuilder/make.sh
+
+    - name: Load custom script
+      run: |
+        mkdir -p openwrt/imagebuilder/files
+        cp -r $WIFI_ENABLE openwrt/imagebuilder/files
 
     - name: Compile firmware
       id: compile
