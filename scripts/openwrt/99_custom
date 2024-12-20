@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 del wireless.radio0.disabled
 set wireless.radio0.channel='36'
