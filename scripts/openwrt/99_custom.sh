@@ -2,7 +2,7 @@
 
 # Enable wifi
 uci set wireless.radio0.disabled='0'
-# uci set wireless.radio1.disabled='0'
+uci set wireless.radio1.disabled='0'
 uci commit wireless
 
 # Allow accept to WAN
