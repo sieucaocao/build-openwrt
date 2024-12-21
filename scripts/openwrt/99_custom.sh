@@ -13,3 +13,10 @@ uci commit firewall
 # Change LAN IP
 uci set network.lan.ipaddr='10.0.100.1'
 uci commit network
+
+# Allow accept SSH to WAN
+uci set dropbear.@dropbear[-1].Port='22'
+uci set dropbear.@dropbear[-1].Interface='wan'
+uci set dropbear.@dropbear[-1].PasswordAuth='on'
+uci set dropbear.@dropbear[-1].RootPasswordAuth='on'
+uci commit dropbear
