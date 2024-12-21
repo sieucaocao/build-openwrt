@@ -5,6 +5,5 @@
 
 make image \
      PROFILE=tl-wr841n-v13 \
-     FILES="files" \
-     PACKAGES="-dnsmasq dnsmasq-full luci"
-     
+     FILES=files \
+     PACKAGES="-dnsmasq dnsmasq-full"
