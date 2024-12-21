@@ -12,7 +12,7 @@ env:
   BUILD_SCRIPT: configs/openwrt/imagebuilder/tl-wr841n-v13.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder2.sh
+  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder-2.sh
   WIFI_ENABLE: scripts/openwrt/99_custom.sh
   TZ: Asia/Ho_Chi_Minh
 
