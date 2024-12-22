@@ -41,15 +41,26 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
-    - name: Load package feeds
+    - name: Git clone package
       run: |
         cd openwrt/sdk
-        sed -i '1i src-git stangri https://github.com/stangri/https-dns-proxy.git' feeds.conf.default
+        git clone https://github.com/stangri/luci-app-https-dns-proxy.git https-dns-proxy
 
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
+        ./scripts/feeds install -a
+        
+    - name: Add a symlink
+	    run: |
+		    cd openwrt/sdk
+		    ln -s $HOME/https-dns-proxy/.git/ $HOME/openwrt/sdk/feeds/packages/net/https-dns-proxy/git-src
+		
+	- name: Reupdate & reinstall feeds
+      run: |
+        cd openwrt/sdk
+        ./scripts/feeds update -i
         ./scripts/feeds install luci-app-https-dns-proxy
 
     - name: Generate default configuration
