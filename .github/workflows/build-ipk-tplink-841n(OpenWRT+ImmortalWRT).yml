@@ -53,9 +53,9 @@ jobs:
         ./scripts/feeds install -a
         
     - name: Add a symlink
-	    run: |
-		    cd openwrt/sdk
-		    ln -s $HOME/https-dns-proxy/.git/ $HOME/openwrt/sdk/feeds/packages/net/https-dns-proxy/git-src
+      run: |
+	cd openwrt/sdk
+        ln -s $HOME/https-dns-proxy/.git/ $HOME/openwrt/sdk/feeds/packages/net/https-dns-proxy/git-src
 		
 	- name: Reupdate & reinstall feeds
       run: |
