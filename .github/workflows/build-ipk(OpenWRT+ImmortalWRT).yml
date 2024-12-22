@@ -44,7 +44,7 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        sed -i '1i src-git stangri https://github.com/stangri/https-dns-proxy.git' >> feeds.conf.default
+        sed -i '1i src-git stangri https://github.com/stangri/https-dns-proxy.git' feeds.conf.default
 
     - name: Update & install feeds
       run: |
