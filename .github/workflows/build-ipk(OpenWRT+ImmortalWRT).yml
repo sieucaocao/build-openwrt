@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build OpenWrt Package IPK
+name: Build OpenWrt (MAC1200R) Package IPK
 
 on:
   workflow_dispatch:
