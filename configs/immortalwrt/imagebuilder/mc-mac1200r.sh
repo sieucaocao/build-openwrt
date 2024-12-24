@@ -4,5 +4,6 @@
 #####################################################################
 
 make image \
+     FILES=files \
      PROFILE=mc-mac1200r \
      PACKAGES="-block-mount -luci-app-filetransfer -luci-app-cpufreq"
