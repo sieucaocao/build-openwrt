@@ -13,7 +13,7 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
   DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
-  WIFI_ENABLE: scripts/openwrt/99_custom.sh
+  CUSTOM_SH: scripts/openwrt/99_custom.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
     - name: Load custom script
       run: |
         mkdir -p openwrt/imagebuilder/files/etc/uci-defaults
-        cp -r $WIFI_ENABLE openwrt/imagebuilder/files/etc/uci-defaults
+        cp -r $CUSTOM_SH openwrt/imagebuilder/files/etc/uci-defaults
 
     - name: Compile firmware
       id: compile
