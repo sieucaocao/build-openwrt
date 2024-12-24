@@ -8,3 +8,7 @@ uci commit firewall
 # Change LAN IP
 uci set network.lan.ipaddr='10.0.100.1'
 uci commit network
+
+# Allow SSH
+uci delete dropbear.@dropbear[0].Interface
+uci commit dropbear
