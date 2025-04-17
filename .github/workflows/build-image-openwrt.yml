@@ -52,6 +52,11 @@ jobs:
         mkdir -p openwrt/imagebuilder/files/etc/uci-defaults
         cp -r $CUSTOM_SH openwrt/imagebuilder/files/etc/uci-defaults
 
+    - name: Skip check gcc/g++
+      run: |
+        mkdir -p openwrt/imagebuilder/staging_dir/host
+        touch openwrt/imagebuilder/staging_dir/host/.prereq-build
+        
     - name: Compile firmware
       id: compile
       run: |
