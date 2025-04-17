@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build Image OpenWrt
+name: Build Image OpenWrt 18.06.9
 
 on:
   workflow_dispatch:
