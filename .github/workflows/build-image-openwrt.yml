@@ -9,10 +9,10 @@ on:
 
 env:
   DEVICE_NAME: mc-mac1200r
-  BUILD_SCRIPT: configs/openwrt/imagebuilder/mc-mac1200r.sh
+  BUILD_SCRIPT: configs/openwrt/imagebuilder/mc-mac1200r-2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE_DIR: true
-  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder.sh
+  DL_IMAGEBUILDER_SH: scripts/openwrt/dl_imagebuilder-2.sh
   CUSTOM_SH: scripts/openwrt/99_custom.sh
   TZ: Asia/Ho_Chi_Minh
 
@@ -31,7 +31,7 @@ jobs:
       run: |
         sudo timedatectl set-timezone "$TZ"
         sudo -E apt-get update
-        sudo -E apt-get -y install build-essential clang flex bison g++ gawk \
+        sudo -E apt-get -y install build-essential clang flex bison gcc-4.8 g++-4.8 g++ gawk \
         gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev \
         python3-distutils python3-setuptools python2.7 rsync swig unzip zlib1g-dev file wget
         sudo -E apt-get -y autoremove --purge
