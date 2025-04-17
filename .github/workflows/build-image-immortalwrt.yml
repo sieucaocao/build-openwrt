@@ -2,7 +2,7 @@
 # Author(s): Việt Anh Bùi | https://github.com/vietanhbui2000 #
 ###############################################################
 
-name: Build ImmortalWrt (Image Builder) MAR1200r
+name: Build Image ImmortalWrt
 
 on:
   workflow_dispatch:
