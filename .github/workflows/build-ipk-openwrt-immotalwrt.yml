@@ -42,6 +42,7 @@ jobs:
       run: |
         cd openwrt/sdk/package
         git clone https://github.com/stangri/https-dns-proxy.git
+        git checkout 2cf67e3
 
     - name: Update & install feeds
       run: |
