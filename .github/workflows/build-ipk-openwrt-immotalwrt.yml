@@ -42,13 +42,18 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git udpxy https://github.com/pcherenkov/udpxy.git" >> feeds.conf.default
+        echo "src-git udpxy https://github.com/sieucaocao/packages-openwrt.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
         ./scripts/feeds install udpxy
+
+    - name: Remove Old Cache (if needed)
+      run: |
+        rm -rf openwrt/sdk/dl/*
+        rm -rf openwrt/sdk/tmp/*
 
     - name: Skip check gcc/g++
       run: |
