@@ -42,7 +42,7 @@ jobs:
     - name: Load package feeds
       run: |
         cd openwrt/sdk
-        echo "src-git sieucaocao https://github.com/sieucaocao/packages-openwrt.git" >> feeds.conf.default
+        echo "src-git udpxy https://github.com/pcherenkov/udpxy.git" >> feeds.conf.default
 
     - name: Update & install feeds
       run: |
