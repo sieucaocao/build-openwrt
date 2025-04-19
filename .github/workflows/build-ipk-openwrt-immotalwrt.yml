@@ -50,7 +50,7 @@ jobs:
         rm -rf https-dns-proxy/
         git clone https://github.com/stangri/https-dns-proxy.git
 
-    - name: Update feeds
+    - name: Install feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds install https-dns-proxy
