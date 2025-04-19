@@ -48,7 +48,7 @@ jobs:
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        ./scripts/feeds install -a
+        ./scripts/feeds install udpxy
 
     - name: Skip check gcc/g++
       run: |
