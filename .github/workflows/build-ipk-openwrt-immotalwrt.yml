@@ -50,11 +50,6 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install udpxy
 
-    - name: Remove Old Cache (if needed)
-      run: |
-        rm -rf openwrt/sdk/dl/*
-        rm -rf openwrt/sdk/tmp/*
-
     - name: Skip check gcc/g++
       run: |
         mkdir -p openwrt/sdk/staging_dir/host
@@ -72,6 +67,10 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: Delete old packages
+      run: |
+         rm -rf openwrt/sdk/feeds/packages/net/udpxy
+         
     - name: Compile package
       id: compile
       run: |
