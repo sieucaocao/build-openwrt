@@ -39,15 +39,25 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
-    - name: Load package feeds
-      run: |
-        cd openwrt/sdk
-        echo "src-git udpxy https://github.com/sieucaocao/packages-openwrt.git" >> feeds.conf.default
+    #- name: Load package feeds
+     # run: |
+      #  cd openwrt/sdk
+       # echo "src-git udpxy https://github.com/sieucaocao/packages-openwrt.git" >> feeds.conf.default
 
-    - name: Update & install feeds
+    - name: Update feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
+
+    - name: Update packages
+      run: |
+        cd openwrt/sdk/feeds/packages/net/
+        rm -rf udpxy/
+        git clone https://github.com/sieucaocao/udpxy.git
+
+    - name: Update feeds
+      run: |
+        cd openwrt/sdk
         ./scripts/feeds install udpxy
 
     - name: Skip check gcc/g++
@@ -66,10 +76,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: Delete old packages
-      run: |
-         rm -rf openwrt/sdk/feeds/packages/net/udpxy
          
     - name: Compile package
       id: compile
