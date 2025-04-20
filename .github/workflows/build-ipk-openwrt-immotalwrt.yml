@@ -39,6 +39,11 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
+    - name: Fix OpenSSL config warning
+      run: |
+        mkdir -p openwrt/sdk/staging_dir/host/etc/ssl
+        echo "" > openwrt/sdk/staging_dir/host/etc/ssl/openssl.cnf
+
     - name: Update feeds
       run: |
         cd openwrt/sdk
@@ -56,12 +61,10 @@ jobs:
         cd openwrt/sdk
         ./scripts/feeds install https-dns-proxy
 
-    - name: Fix config file
-      run: |
+    #- name: Fix config file
+      #run: |
         #mkdir -p openwrt/sdk/staging_dir/host/
         #touch openwrt/sdk/staging_dir/host/.prereq-build
-        mkdir -p openwrt/sdk/staging_dir/host/etc/ssl
-        touch openwrt/sdk/staging_dir/host/etc/ssl/openssl.cnf
 
     - name: Generate default configuration
       run: |
