@@ -39,11 +39,6 @@ jobs:
         cd openwrt
         sh dl_sdk.sh
 
-    - name: Fix OpenSSL config warning
-      run: |
-        mkdir -p openwrt/sdk/staging_dir/host/etc/ssl
-        echo "" > openwrt/sdk/staging_dir/host/etc/ssl/openssl.cnf
-
     - name: Update feeds
       run: |
         cd openwrt/sdk
@@ -52,9 +47,8 @@ jobs:
     - name: Update new packages
       run: |
         cd openwrt/sdk/feeds/packages/net/
-        rm -rf https-dns-proxy/
-        git clone https://github.com/stangri/https-dns-proxy.git
-        #git clone https://github.com/sieucaocao/https-dns-proxy.git
+        rm -rf ddns-scripts/
+        git clone https://github.com/sieucaocao/ddns-scripts.git
 
     - name: Install feeds
       run: |
