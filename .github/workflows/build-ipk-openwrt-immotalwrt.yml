@@ -47,7 +47,7 @@ jobs:
     - name: Update new packages
       run: |
         cd openwrt/sdk/feeds/packages/net/
-        rm https-dns-proxy/
+        rm -rf https-dns-proxy/
         git clone https://github.com/stangri/https-dns-proxy.git
         #git clone https://github.com/sieucaocao/https-dns-proxy.git
 
