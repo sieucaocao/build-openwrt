@@ -56,10 +56,12 @@ jobs:
         cd openwrt/sdk
         ./scripts/feeds install https-dns-proxy
 
-    #- name: Skip check gcc/g++
-      #run: |
-        #mkdir -p openwrt/sdk/staging_dir/host
+    - name: Fix config file
+      run: |
+        #mkdir -p openwrt/sdk/staging_dir/host/
         #touch openwrt/sdk/staging_dir/host/.prereq-build
+        mkdir -p openwrt/sdk/staging_dir/host/etc/ssl
+        touch openwrt/sdk/staging_dir/host/etc/ssl/openssl.cnf
 
     - name: Generate default configuration
       run: |
