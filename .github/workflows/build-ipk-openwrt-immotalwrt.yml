@@ -48,8 +48,7 @@ jobs:
       run: |
         cd openwrt/sdk/feeds/packages/net/https-dns-proxy/
         rm Makefile
-        #wget https://raw.githubusercontent.com/sieucaocao/https-dns-proxy/refs/heads/main/Makefile
-        wget https://raw.githubusercontent.com/stangri/https-dns-proxy/e150cd24d9eb35697ce71ee1ea9dcf3a3b7e7a60/Makefile
+        wget https://raw.githubusercontent.com/sieucaocao/https-dns-proxy/refs/heads/main/Makefile
 
     - name: Install feeds
       run: |
