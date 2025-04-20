@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  DL_SDK_SH: scripts/immotalwrt/dl_sdk.sh
+  DL_SDK_SH: scripts/immortalwrt/dl_sdk.sh
   TZ: Asia/Ho_Chi_Minh
 
 jobs:
@@ -48,7 +48,8 @@ jobs:
       run: |
         cd openwrt/sdk/feeds/packages/net/https-dns-proxy/
         rm Makefile
-        wget https://raw.githubusercontent.com/sieucaocao/https-dns-proxy/refs/heads/main/Makefile
+        #wget https://raw.githubusercontent.com/sieucaocao/https-dns-proxy/refs/heads/main/Makefile
+        wget https://raw.githubusercontent.com/stangri/https-dns-proxy/e150cd24d9eb35697ce71ee1ea9dcf3a3b7e7a60/Makefile
 
     - name: Install feeds
       run: |
