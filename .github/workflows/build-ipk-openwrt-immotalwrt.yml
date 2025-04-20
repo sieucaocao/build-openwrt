@@ -46,9 +46,9 @@ jobs:
 
     - name: Update new packages
       run: |
-        cd openwrt/sdk/feeds/packages/net/
-        rm -rf https-dns-proxy/
-        git clone https://github.com/sieucaocao/https-dns-proxy.git
+        cd openwrt/sdk/feeds/packages/net/https-dns-proxy/
+        rm Makefile
+        wget https://raw.githubusercontent.com/stangri/https-dns-proxy/e150cd24d9eb35697ce71ee1ea9dcf3a3b7e7a60/Makefile
 
     - name: Install feeds
       run: |
