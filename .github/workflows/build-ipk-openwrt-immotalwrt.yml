@@ -47,19 +47,19 @@ jobs:
     - name: Update new packages
       run: |
         cd openwrt/sdk/feeds/packages/net/
-        rm -rf ddns-scripts/
-        rm -rf https-dns-proxy/
+        #rm -rf ddns-scripts/
+        #rm -rf https-dns-proxy/
         rm -rf udpxy/
-        git clone https://github.com/sieucaocao/ddns-scripts.git
-        git clone https://github.com/sieucaocao/https-dns-proxy.git
+        #git clone https://github.com/sieucaocao/ddns-scripts.git
+        #git clone https://github.com/sieucaocao/https-dns-proxy.git
         git clone https://github.com/sieucaocao/udpxy.git
         
 
     - name: Install feeds
       run: |
         cd openwrt/sdk
-        ./scripts/feeds install ddns-scripts
-        ./scripts/feeds install https-dns-proxy
+        #./scripts/feeds install ddns-scripts
+        #./scripts/feeds install https-dns-proxy
         ./scripts/feeds install udpxy
 
     - name: Fix config file
@@ -83,8 +83,8 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        make package/ddns-scripts/compile V=s -j$(nproc)
-        make package/https-dns-proxy/compile V=s -j$(nproc)
+        #make package/ddns-scripts/compile V=s -j$(nproc)
+        #make package/https-dns-proxy/compile V=s -j$(nproc)
         make package/udpxy/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
