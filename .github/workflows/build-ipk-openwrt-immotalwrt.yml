@@ -62,10 +62,10 @@ jobs:
         ./scripts/feeds install https-dns-proxy
         ./scripts/feeds install udpxy
 
-    #- name: Fix config file
-      #run: |
-        #mkdir -p openwrt/sdk/staging_dir/host/
-        #touch openwrt/sdk/staging_dir/host/.prereq-build
+    - name: Fix config file
+      run: |
+        mkdir -p openwrt/sdk/staging_dir/host/
+        touch openwrt/sdk/staging_dir/host/.prereq-build
 
     - name: Generate default configuration
       run: |
