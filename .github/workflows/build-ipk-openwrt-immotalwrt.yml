@@ -35,9 +35,9 @@ jobs:
     - name: Download SDK
       run: |
         mkdir -p openwrt
-        cp $DL_SDK_SH openwrt/dl_sdk.sh
+        cp $DL_SDK_SH openwrt/dl_sdk-2.sh
         cd openwrt
-        sh dl_sdk.sh
+        sh dl_sdk-2.sh
 
     - name: Update feeds
       run: |
@@ -47,20 +47,20 @@ jobs:
     - name: Update new packages
       run: |
         cd openwrt/sdk/feeds/packages/net/
-        #rm -rf ddns-scripts/
+        rm -rf ddns-scripts/
         #rm -rf https-dns-proxy/
-        rm -rf udpxy/
-        #git clone https://github.com/sieucaocao/ddns-scripts.git
+        #rm -rf udpxy/
+        git clone https://github.com/sieucaocao/ddns-scripts.git
         #git clone https://github.com/sieucaocao/https-dns-proxy.git
-        git clone https://github.com/sieucaocao/udpxy.git
+        #git clone https://github.com/sieucaocao/udpxy.git
         
 
     - name: Install feeds
       run: |
         cd openwrt/sdk
-        #./scripts/feeds install ddns-scripts
+        ./scripts/feeds install ddns-scripts
         #./scripts/feeds install https-dns-proxy
-        ./scripts/feeds install udpxy
+        #./scripts/feeds install udpxy
 
     - name: Fix config file
       run: |
@@ -83,9 +83,9 @@ jobs:
       id: compile
       run: |
         cd openwrt/sdk
-        #make package/ddns-scripts/compile V=s -j$(nproc)
+        make package/ddns-scripts/compile V=s -j$(nproc)
         #make package/https-dns-proxy/compile V=s -j$(nproc)
-        make package/udpxy/compile V=s -j$(nproc)
+        #make package/udpxy/compile V=s -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
