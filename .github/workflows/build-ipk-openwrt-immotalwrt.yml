@@ -47,8 +47,8 @@ jobs:
     - name: Update new packages
       run: |
         cd openwrt/sdk/feeds/packages/net/
-        rm -rf igmpproxy
-        git clone https://github.com/sieucaocao/openwrt-packages.git
+        rm -rf igmpproxy/
+        git clone https://github.com/sieucaocao/igmpproxy.git
         
     - name: Install feeds
       run: |
