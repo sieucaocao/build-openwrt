@@ -48,7 +48,7 @@ jobs:
       run: |
         mkdir -p openwrt/sdk/package/igmpproxy
         cd openwrt/sdk/package/igmpproxy
-        git clone https://github.com/sieucaocao/igmpproxy
+        git clone https://github.com/sieucaocao/igmpproxy .
         
     #- name: Install feeds
       #run: |
