@@ -38,21 +38,22 @@ jobs:
         cp $DL_SDK_SH openwrt/dl_sdk-2.sh
         cd openwrt
         sh dl_sdk-2.sh
-    
-    - name: Load package feeds
-      run: |
-        cd openwrt/sdk
-        echo "src-git igmpproxy https://github.com/sieucaocao/igmpproxy.git" >> feeds.conf.default
   
     - name: Update feeds
       run: |
         cd openwrt/sdk
         ./scripts/feeds update -a
-        
-    - name: Install feeds
+
+    - name: Creat new package
       run: |
-        cd openwrt/sdk
-        ./scripts/feeds install igmpproxy
+        mkdir -p openwrt/sdk/package/igmpproxy
+        cd openwrt/sdk/package/igmpproxy
+        git clone https://github.com/sieucaocao/igmpproxy
+        
+    #- name: Install feeds
+      #run: |
+        #cd openwrt/sdk
+        #./scripts/feeds install igmpproxy
 
     - name: Fix config file
       run: |
