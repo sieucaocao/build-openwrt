@@ -49,6 +49,7 @@ jobs:
         mkdir -p openwrt/sdk/package/omcproxy
         cd openwrt/sdk/package/omcproxy
         git clone https://github.com/sieucaocao/omcproxy .
+        sed -i 's|-DWITH_LIBUBOX=1|-DWITH_LIBUBOX=1 -Dubox_include_dir=$(STAGING_DIR)/usr/include -Dlibubox=$(STAGING_DIR)/usr/lib/libubox.so -Dubus_include_dir=$(STAGING_DIR)/usr/include -Dlibubus=$(STAGING_DIR)/usr/lib/libubus.so|g' Makefile
 
     - name: Fix config file
       run: |
