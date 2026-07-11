@@ -6,4 +6,5 @@
 make image \
      FILES=files \
      PROFILE=mc-mac1200r \
-     PACKAGES="-ath10k-firmware-qca988x-ct ath10k-firmware-qca988x -kmod-ath10k-ct kmod-ath10k luci"
+     #PACKAGES="-ath10k-firmware-qca988x-ct ath10k-firmware-qca988x -kmod-ath10k-ct kmod-ath10k luci"
+     PACKAGES="-kmod-ath10k-ct kmod-ath10k-ct-smallbuffers luci"
